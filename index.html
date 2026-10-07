@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CatatUang">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>CatatUang - Pengeluaran Harian</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+  <div>
+    <div class="eyebrow">KEUANGAN PRIBADI</div>
+    <h1>CatatUang</h1>
+  </div>
+  <button id="installBtn" class="icon-btn hidden" title="Pasang aplikasi">＋</button>
+</header>
+
+<main>
+<section class="hero card">
+  <div class="hero-label">Saldo saat ini</div>
+  <div id="balance" class="balance">Rp0</div>
+  <div class="hero-grid">
+    <div><span>Pemasukan</span><strong id="income">Rp0</strong></div>
+    <div><span>Pengeluaran</span><strong id="expense">Rp0</strong></div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="mini card"><span>Hari ini</span><strong id="todayExpense">Rp0</strong></div>
+  <div class="mini card"><span>Bulan ini</span><strong id="monthExpense">Rp0</strong></div>
+</section>
+
+<section class="actions">
+  <button class="primary" id="addBtn">＋ Tambah Transaksi</button>
+  <button class="secondary" id="exportBtn">⇩ Export CSV</button>
+</section>
+
+<section class="card filters">
+  <div class="section-title">Riwayat Transaksi</div>
+  <div class="filter-row">
+    <input id="search" type="search" placeholder="Cari transaksi...">
+    <select id="typeFilter">
+      <option value="all">Semua</option>
+      <option value="expense">Pengeluaran</option>
+      <option value="income">Pemasukan</option>
+    </select>
+  </div>
+  <div id="list" class="list"></div>
+</section>
+</main>
+
+<nav class="bottom-nav">
+  <button class="nav-active">⌂<small>Beranda</small></button>
+  <button id="navAdd">＋<small>Tambah</small></button>
+  <button id="navExport">⇩<small>Export</small></button>
+</nav>
+</div>
+
+<div id="modal" class="modal hidden">
+ <div class="sheet">
+  <div class="sheet-head"><h2 id="modalTitle">Tambah Transaksi</h2><button id="closeModal">×</button></div>
+  <form id="form">
+   <input type="hidden" id="editId">
+   <label>Jenis
+    <div class="segmented">
+      <label><input type="radio" name="type" value="expense" checked><span>Pengeluaran</span></label>
+      <label><input type="radio" name="type" value="income"><span>Pemasukan</span></label>
+    </div>
+   </label>
+   <label>Jumlah
+    <input id="amount" type="number" min="1" step="1" inputmode="numeric" placeholder="Contoh: 25000" required>
+   </label>
+   <label>Kategori
+    <select id="category">
+      <option>Makan & Minum</option><option>Transportasi</option><option>Belanja</option>
+      <option>Tagihan</option><option>Kesehatan</option><option>Pendidikan</option>
+      <option>Hiburan</option><option>Rumah Tangga</option><option>Gaji</option>
+      <option>Bonus</option><option>Lainnya</option>
+    </select>
+   </label>
+   <label>Catatan
+    <input id="note" maxlength="80" placeholder="Contoh: makan siang">
+   </label>
+   <label>Tanggal
+    <input id="date" type="date" required>
+   </label>
+   <button class="primary submit" type="submit">Simpan Transaksi</button>
+   <button id="deleteBtn" class="danger hidden" type="button">Hapus Transaksi</button>
+  </form>
+ </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
